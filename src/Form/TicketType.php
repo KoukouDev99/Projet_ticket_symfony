@@ -20,6 +20,10 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('auteur', EmailType::class, [
+                'label' => 'Email',
+                'attr' => [
+                'placeholder' => 'Entrez votre adresse email'
+            ],
                 'required' => true,
                 'invalid_message' => 'Veuillez saisir une adresse email valide.',
             ])
