@@ -33,7 +33,7 @@ class Ticket
     private ?Etat $etat = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
-    private ?User $responsable = null;
+    private ?Users $responsable = null;
 
 
     public function __construct() {
@@ -117,12 +117,12 @@ class Ticket
         return $this;
     }
 
-    public function getResponsable(): ?User
+    public function getResponsable(): ?Users
     {
         return $this->responsable;
     }
 
-    public function setResponsable(?User $responsable): static
+    public function setResponsable(?Users $responsable): static
     {
         $this->responsable = $responsable;
 
