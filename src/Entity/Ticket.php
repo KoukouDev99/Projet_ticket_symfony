@@ -23,8 +23,10 @@ class Ticket
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: "La description est obligatoire.")]
     #[Assert\Length(
-    min: 10,
-    minMessage: "La description doit contenir au moins {{ limit }} caractères."
+    min: 20,
+    max: 250,
+    minMessage: "La description doit contenir au moins {{ limit }} caractères.",
+    maxMessage: "La description ne doit pas dépasser {{ limit }} caractères."
 )]
     private ?string $description = null;
 
