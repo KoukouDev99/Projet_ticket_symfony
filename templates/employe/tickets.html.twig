@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            background-color: #2563eb;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 15px;
+            color: white;
+            background-color: #64748b;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎫 Liste des tickets</h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Auteur</th>
+                <th>Description</th>
+                <th>Catégorie</th>
+                <th>État</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for ticket in tickets %}
+
+            <tr>
+
+                <td>{{ ticket.id }}</td>
+
+                <td>{{ ticket.auteur }}</td>
+
+                <td>{{ ticket.description }}</td>
+
+                <td>
+                    {{ ticket.categorie ? ticket.categorie.nom : '-' }}
+                </td>
+
+                <td>
+                    {{ ticket.etat ? ticket.etat.nom : '-' }}
+                </td>
+
+                <td>
+                    <a
+                        href="{{ path('employe_ticket_show', {'id': ticket.id}) }}"
+                        class="btn"
+                    >
+                        Modifier
+                    </a>
+                </td>
+
+            </tr>
+
+        {% else %}
+
+            <tr>
+                <td colspan="6">
+                    Aucun ticket trouvé.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <a
+        href="{{ path('employe_home') }}"
+        class="back"
+    >
+        ← Retour
+    </a>
+
+</div>
+
+</body>
+
+</html>

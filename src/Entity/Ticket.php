@@ -94,7 +94,7 @@ class Ticket
         return $this->dateCloture;
     }
 
-    public function setDateCloture(\DateTimeImmutable $dateCloture): static
+    public function setDateCloture(?\DateTimeImmutable $dateCloture): static
     {
         $this->dateCloture = $dateCloture;
 

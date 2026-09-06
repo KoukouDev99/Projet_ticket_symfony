@@ -1,0 +1,84 @@
+<style>
+    .ticket-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+
+.ticket-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.card-content h2 {
+    margin-bottom: 10px;
+    color: #1e293b;
+}
+
+.card-content p {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-ticket {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.btn-ticket:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-ticket span {
+    font-size: 18px;
+}
+
+.logout {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
+</style>
+
+<div class="card ticket-card">
+
+    <div class="card-icon">
+        🎫
+    </div>
+
+    <div class="card-content">
+        <h2>Gestion des tickets</h2>
+
+        <p>
+            Consultez les tickets de l'agence et mettez à jour
+            leur état.
+        </p>
+
+        <a href="{{ path('employe_tickets') }}" class="btn-ticket">
+            Voir les tickets
+            <span>→</span>
+        </a>
+    </div>
+
+        <div class="logout">
+        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    </div>
+
+</div>

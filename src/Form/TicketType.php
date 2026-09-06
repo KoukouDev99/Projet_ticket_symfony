@@ -6,9 +6,9 @@ use App\Entity\Categorie;
 use App\Entity\Etat;
 use App\Entity\Ticket;
 use App\Entity\Users;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,34 +16,59 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TicketType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add('auteur', EmailType::class, [
-                'label' => 'Email',
-                'attr' => [
-                'placeholder' => 'Entrez votre adresse email'
-            ],
-                'required' => true,
-                'invalid_message' => 'Veuillez saisir une adresse email valide.',
+                'label' => 'Email du client',
             ])
-            ->add('description', TextareaType::class, [
-                'required' => true,
-                 'attr' => [
-                 'rows' => 5],
 
+            ->add('dateOuverture', DateTimeType::class, [
+                'label' => 'Date d’ouverture',
+                'widget' => 'single_text',
             ])
+
+            ->add('dateCloture', DateTimeType::class, [
+                'label' => 'Date de clôture',
+                'widget' => 'single_text',
+                'required' => false,
+            ])
+
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+                'attr' => [
+                    'rows' => 5,
+                ],
+            ])
+
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'nom',
-                'required' => true,
-                'placeholder' => 'Choisissez une catégorie',
+                'label' => 'Catégorie',
+                'placeholder' => 'Choisir une catégorie',
+            ])
 
+            ->add('etat', EntityType::class, [
+                'class' => Etat::class,
+                'choice_label' => 'nom',
+                'label' => 'État',
+                'placeholder' => 'Choisir un état',
+            ])
+
+            ->add('responsable', EntityType::class, [
+                'class' => Users::class,
+                'choice_label' => 'email',
+                'label' => 'Responsable',
+                'placeholder' => 'Choisir un responsable',
+                'required' => false,
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
+    public function configureOptions(
+        OptionsResolver $resolver
+    ): void {
         $resolver->setDefaults([
             'data_class' => Ticket::class,
         ]);
